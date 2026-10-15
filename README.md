@@ -4,9 +4,12 @@ Turn an audio recording into an animated video, entirely on your computer.
 Choose from nine visual styles and three color palettes, try a temporary preview,
 and export a video with your original soundtrack.
 
+[Watch the demo / presentation video](https://youtu.be/SLnNALbqokE)
+or [download the Windows app from Releases](https://github.com/danielTeniente/audio-motion/releases).
+
 ## Download and run on Windows
 
-Open this repository's **Releases** section and download
+Open the [**Releases download page**](https://github.com/danielTeniente/audio-motion/releases) and download
 **Audio-Form-0.1.0-windows-x64.zip** from the release's Assets list.
 Choose the application ZIP, not GitHub's automatic "Source code" download.
 
