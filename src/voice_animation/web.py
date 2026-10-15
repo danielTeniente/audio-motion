@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from .config import (RenderConfig, PALETTES, WEB_MAX_CONNECTIONS,
-                     WEB_SOCKET_TIMEOUT, WEB_UPLOAD_TIMEOUT)
+                     WEB_SOCKET_TIMEOUT, WEB_UPLOAD_TIMEOUT, application_root)
 from .logic.pipeline import render_audio
 from .logic.styles import STYLES
 from .media import TemporarySession, media_workspace, ffmpeg_version
@@ -265,13 +265,14 @@ class StudioHandler(BaseHTTPRequestHandler):
             self.reply(400, self.server.job)
 
 
-def main():
-    root = Path(__file__).resolve().parents[2]
+def main(open_browser=True):
+    root = application_root()
     print(ffmpeg_version(), flush=True)
     server = StudioServer(('127.0.0.1', 0), root)
     address = f'http://127.0.0.1:{server.server_port}'
     print(f'\n  AUDIO / FORM\n\n  Open {address}\n\n  Keep this window open while using the app.\n  Close it or press Ctrl+C to stop the server.\n  Finished videos are saved in outputs.\n', flush=True)
-    webbrowser.open(address)
+    if open_browser:
+        webbrowser.open(address)
     try:
         server.serve_forever(poll_interval=.25)
     except KeyboardInterrupt:

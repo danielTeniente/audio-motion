@@ -7,6 +7,14 @@ from .logic.pipeline import render_audio
 from .logic.styles import STYLES
 
 
+def studio_main(argv=None):
+    parser = argparse.ArgumentParser(description="Open the local Audio / Form studio.")
+    parser.add_argument('--no-browser', action='store_true', help='Print the local address without opening a browser.')
+    args = parser.parse_args(argv)
+    from .web import main as run_studio
+    return run_studio(open_browser=not args.no_browser)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Turn audio into an MP4 animation with its original sound.")
     parser.add_argument("audio", type=Path, help="Input audio file (WAV, MP3, FLAC, etc.)")

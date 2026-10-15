@@ -5,12 +5,13 @@ import os
 from pathlib import Path
 import re
 import shutil
+import sys
 import subprocess
 import tempfile
 import uuid
 import numpy as np
 import imageio_ffmpeg
-from .config import MEDIA_INPUT_FORMATS, MEDIA_DECODE_TIMEOUT
+from .config import MEDIA_INPUT_FORMATS, MEDIA_DECODE_TIMEOUT, application_root
 
 SAMPLE_RATE = 22050
 _workspace = ContextVar('media_workspace', default=None)
@@ -20,7 +21,10 @@ def ffmpeg_path():
     explicit = os.environ.get('IMAGEIO_FFMPEG_EXE')
     if explicit:
         return explicit
-    local = Path(__file__).resolve().parents[2] / '.tools' / 'ffmpeg' / 'bin'
+    if getattr(sys, 'frozen', False):
+        local = application_root() / 'ffmpeg' / 'bin'
+    else:
+        local = Path(__file__).resolve().parents[2] / '.tools' / 'ffmpeg' / 'bin'
     executable = local / ('ffmpeg.exe' if os.name == 'nt' else 'ffmpeg')
     if executable.is_file():
         return str(executable)

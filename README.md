@@ -4,7 +4,43 @@ Turn an audio recording into an animated video, entirely on your computer.
 Choose from nine visual styles and three color palettes, try a temporary preview,
 and export a video with your original soundtrack.
 
-## Requirements
+## Download and run on Windows
+
+Open this repository's **Releases** section and download
+**Audio-Form-0.1.0-windows-x64.zip** from the release's Assets list.
+Choose the application ZIP, not GitHub's automatic "Source code" download.
+
+1. Right-click the ZIP and select **Extract All**.
+2. Open the extracted folder and double-click **Audio Form.exe**.
+3. Your browser opens the app. Keep the console window open while using it;
+   close the console to stop the app.
+
+The portable release includes Python, the required libraries, and FFmpeg 9.0.2.
+No installation, account, or internet connection is required to run it. Use
+Windows 10 or 11 on a 64-bit x86 PC. Keep the `_internal` and `ffmpeg` folders
+beside the executable, and extract somewhere writable such as Documents.
+The included **README.txt** explains the same steps in plain text.
+
+The executable is unsigned. Windows may show an unknown-publisher warning.
+Only run releases you trust; do not disable your security software. A SHA-256
+file is provided alongside the ZIP to check download integrity.
+
+## Animation examples
+
+Silent, looping examples made from synthetic signals. 
+
+| Line · Aurora | Circles · Orchid | Tree · Ember |
+| --- | --- | --- |
+| ![Animated line waveform](docs/examples/line.gif) | ![Animated waveform circles](docs/examples/circles.gif) | ![Animated branching tree](docs/examples/tree.gif) |
+
+The tree is named **Fractal** in the app.
+
+## Run from source (optional)
+
+The instructions below are for users who prefer running the Python source.
+They are not needed for the portable Windows release.
+
+### Requirements
 
 - Python 3.10 or newer.
 - A modern browser.
@@ -57,8 +93,8 @@ Extract `bin/ffmpeg.exe` from that archive into this project at:
 
 The app automatically uses that executable. To update it later, stop the app,
 download and verify the newer release, and replace that executable. The binary
-is not included in Git; each downloaded copy of the project needs its own
-installation. FFmpeg 9.0.2 was tested with this app on October 14, 2026.
+is excluded from Git; source downloads need their own installation. The
+portable release already contains it. FFmpeg 9.0.2 was tested with this app on October 14, 2026.
 
 Alternatively, on any platform, set `IMAGEIO_FFMPEG_EXE` to the full path of your
 maintained FFmpeg executable. This explicit setting takes priority over the
@@ -74,7 +110,7 @@ Check its version before processing recordings from unknown sources.
 
 ## Open the app
 
-On Windows, double-click **Start Studio.bat**. A console window opens and launches
+When running from source on Windows, double-click **Start Studio.bat**. A console window opens and launches
 the app in your default browser. Keep that console open while using the app.
 Close it, or press **Ctrl+C**, to stop the server.
 
@@ -153,11 +189,6 @@ Temporary files created by older app versions outside these session folders
 are not automatically removed. Command-line renders retain their usual temporary
 file handling and may leave unfinished files after a forced termination.
 
-No sample recordings, generated videos, or other media are included in this
-repository. The Git ignore rules allow only the app's required files, so local
-recordings, exports, environments, and other unlisted files stay outside Git.
-These rules do not filter files manually dragged onto GitHub's upload page.
-
 ## Optional command-line use
 
 After installation, you can also render without opening the web app. On Windows:
@@ -203,26 +234,11 @@ server to a network or deploy it as a public upload service. Other programs or
 users on the same computer are outside its access-control boundary.
 
 The media decoder is a native FFmpeg executable. Keep it updated using the
-instructions above. The older FFmpeg 7.1 bundled with imageio-ffmpeg 0.6.0
-predates documented security fixes; updating the Python package does not
-necessarily update its binary. See the official
+instructions above.  See the official
 [FFmpeg security notices](https://ffmpeg.org/security.html) and
 [download options](https://ffmpeg.org/download.html). Treat recordings from
 unknown sources cautiously and run the app without administrator privileges.
 
-The app restricts FFmpeg to direct local media containers, blocks network
-protocols for media inputs, and removes metadata and chapters from exports.
-Browser protections block cross-origin requests and embedding the interface
-inside another site. Uploads and decoding have time limits; simultaneous HTTP
-connections are limited.
-
 These controls do not sandbox FFmpeg or guarantee that every malformed file is
 safe. Full-length renders can still use substantial processor time and disk
 space; there is no total render-duration or disk-quota limit. Crash leftovers are cleaned on a later launch, as described above.
-
-Deleting a file removes it from normal use but does not guarantee that old
-storage blocks, operating-system swap files, or backups cannot contain copies.
-That is the difference between ordinary deletion and secure erasure; it does
-not mean the app uploaded your files. This app performs ordinary deletion.
-For sensitive recordings, use an encrypted drive and appropriate backup settings.
-The app does not overwrite free space or change your disk-encryption settings.

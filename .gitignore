@@ -1,5 +1,5 @@
 # Deny by default: only the runtime files listed below belong in this repository.
-# This excludes ALL media, recordings, exports, private data, secrets, archives,
+# This excludes private media, recordings, exports, secrets, archives,
 # virtual environments, caches, build output, tests, examples, experiments,
 # editor settings, AGENT/AGENTS instructions, and local project notes.
 # New files remain ignored until deliberately added to this allowlist.
@@ -44,3 +44,10 @@
 !/src/voice_animation/web_static/app.js
 !/src/voice_animation/web_static/index.html
 !/src/voice_animation/web_static/style.css
+
+# Explicitly requested silent README examples; synthetic audio only
+!/docs/
+!/docs/examples/
+!/docs/examples/line.gif
+!/docs/examples/circles.gif
+!/docs/examples/tree.gif

@@ -1,6 +1,15 @@
 """Validated render settings, independent of the command-line interface."""
 from dataclasses import dataclass
 import math
+import sys
+from pathlib import Path
+
+
+def application_root():
+    """Writable portable folder, or the source checkout when running Python."""
+    if getattr(sys, 'frozen', False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parents[2]
 
 # Brian's Brain sphere: connected and rings modes.
 BRAIN_SPHERE_CELLS = 2400
