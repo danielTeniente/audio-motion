@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voice-animations"
+version = "0.1.0"
+description = "A local audio-to-video studio with nine animation styles"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24,<3", "Pillow>=10,<13", "imageio-ffmpeg>=0.5,<1"]
+
+[project.scripts]
+voice-animate = "voice_animation.cli:main"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["voice_animation", "voice_animation.*"]
+
+[tool.setuptools.package-data]
+voice_animation = ["web_static/index.html", "web_static/style.css", "web_static/app.js"]

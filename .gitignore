@@ -1,0 +1,46 @@
+# Deny by default: only the runtime files listed below belong in this repository.
+# This excludes ALL media, recordings, exports, private data, secrets, archives,
+# virtual environments, caches, build output, tests, examples, experiments,
+# editor settings, AGENT/AGENTS instructions, and local project notes.
+# New files remain ignored until deliberately added to this allowlist.
+# Do not use git add -f for local data. GitHub manual uploads bypass these rules.
+*
+
+# User-facing entry points and installation metadata
+!/.gitignore
+!/README.md
+!/pyproject.toml
+!/Start Studio.bat
+
+# Traverse only the application's directories
+!/src/
+!/src/voice_animation/
+!/src/voice_animation/logic/
+!/src/voice_animation/web_static/
+!/src/voice_animation/logic/styles/
+
+# Explicit runtime source and browser assets (no media files)
+!/src/voice_animation/__init__.py
+!/src/voice_animation/__main__.py
+!/src/voice_animation/cli.py
+!/src/voice_animation/config.py
+!/src/voice_animation/logic/__init__.py
+!/src/voice_animation/logic/analysis.py
+!/src/voice_animation/logic/automata.py
+!/src/voice_animation/logic/brain_sphere.py
+!/src/voice_animation/logic/colors.py
+!/src/voice_animation/logic/pipeline.py
+!/src/voice_animation/logic/styles/__init__.py
+!/src/voice_animation/logic/styles/apollonian.py
+!/src/voice_animation/logic/styles/automata_orbit.py
+!/src/voice_animation/logic/styles/base.py
+!/src/voice_animation/logic/styles/brain_sphere.py
+!/src/voice_animation/logic/styles/dragon.py
+!/src/voice_animation/logic/styles/fractal.py
+!/src/voice_animation/logic/styles/pythagoras.py
+!/src/voice_animation/logic/styles/waveforms.py
+!/src/voice_animation/media.py
+!/src/voice_animation/web.py
+!/src/voice_animation/web_static/app.js
+!/src/voice_animation/web_static/index.html
+!/src/voice_animation/web_static/style.css
